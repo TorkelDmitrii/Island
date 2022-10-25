@@ -5,22 +5,14 @@ import com.javarush.island.torkel.entity.EntityType;
 
 public class Plant extends Entity {
 
-    public Plant() {
-        super(EntityType.PLANT);
+    public Plant(EntityType type){
+        super(type);
     }
 
     @Override
-    public void multiply() {
+    public void changeWeight() {
 
     }
 
-    @Override
-    public boolean eat() {
-        return false;
-    }
 
-    @Override
-    public void move() {
-
-    }
 }
