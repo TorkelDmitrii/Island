@@ -13,14 +13,7 @@ public abstract class Entity {
 
     protected double currentWeight;
 
-    public Entity multiply(){
-        int multiplyProbability = this.getType().getMultiplyProbability();
-        int random = new Random().nextInt(100);
-        if (random < multiplyProbability) {
-            return Entity.createEntity(this.getType());
-        }
-        return null;
-    }
+    public abstract Entity multiply();
 
     public abstract void changeWeight();
 
@@ -33,10 +26,7 @@ public abstract class Entity {
     }
 
     public boolean isDie() {
-        if (currentWeight < type.getMaxWeight() / 2) {
-            return true;
-        }
-        return false;
+        return currentWeight < type.getMaxWeight() / 2;
     }
 
     public static Entity createEntity(EntityType type) {
@@ -67,8 +57,7 @@ public abstract class Entity {
 
     public Entity(EntityType type) {
         this.type = type;
-        currentWeight = type.getMaxWeight();
-
+        currentWeight = type.getMaxWeight() / 100 * 70;
     }
 
     public double getCurrentWeight() {

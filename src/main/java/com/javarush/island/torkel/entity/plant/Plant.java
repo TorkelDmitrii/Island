@@ -5,8 +5,13 @@ import com.javarush.island.torkel.entity.EntityType;
 
 public class Plant extends Entity {
 
-    public Plant(EntityType type){
+    public Plant(EntityType type) {
         super(type);
+    }
+
+    @Override
+    public Entity multiply() {
+        return Entity.createEntity(this.getType());
     }
 
     @Override

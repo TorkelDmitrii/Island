@@ -36,8 +36,6 @@ public class GameMap {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLUMNS; j++) {
 //                List<Animal> animalsToCell = new ArrayList<>();
-
-
                 cells[i][j] = new Cell(createRandomList());
             }
 
@@ -66,7 +64,7 @@ public class GameMap {
         System.out.println("\n");
     }
 
-    public void start() throws InterruptedException {
+    public void iterate() throws InterruptedException {
         int countOfCore = Runtime.getRuntime().availableProcessors();
         List<Thread> threadList = new ArrayList<>();
 

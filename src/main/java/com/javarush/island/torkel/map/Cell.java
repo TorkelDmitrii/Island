@@ -16,9 +16,10 @@ import java.lang.Class;
 public class Cell {
     public Cell(List<Entity> animalsInCell) {
         this.newEntityList = animalsInCell;
+        this.entities = animalsInCell;
     }
 
-    private List<Entity> newEntityList = new ArrayList<>();
+    private List<Entity> newEntityList;
     private List<Entity> entities = new ArrayList<>();
 
     public void add(Entity entity) {

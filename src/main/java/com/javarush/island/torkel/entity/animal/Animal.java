@@ -3,6 +3,8 @@ package com.javarush.island.torkel.entity.animal;
 import com.javarush.island.torkel.entity.Entity;
 import com.javarush.island.torkel.entity.EntityType;
 
+import java.util.Random;
+
 public abstract class Animal extends Entity {
 
     public Animal(EntityType type) {
@@ -12,6 +14,7 @@ public abstract class Animal extends Entity {
     public boolean eat(Entity entity) {
         double eatenAnimalWeight = entity.getCurrentWeight();
         double maxFood = this.getType().getMaxFood();
+        double maxWeight = this.getType().getMaxWeight();
         double countOfEaten = this.getCountOfEaten();
         if ((countOfEaten + eatenAnimalWeight) < maxFood) {
             currentWeight += eatenAnimalWeight;
@@ -22,14 +25,14 @@ public abstract class Animal extends Entity {
             this.setCountOfEaten(maxFood);
         }
 
-        if (currentWeight > maxFood) {
-            currentWeight = maxFood;
+        if (currentWeight > maxWeight) {
+            currentWeight = maxWeight;
             return true;
         }
-        if (currentWeight > maxFood) {
-            currentWeight = maxFood;
-            return true;
-        }
+//        if (currentWeight < maxWeight) {
+//            currentWeight = maxFood;
+//            return true;
+//        }
         if (this.getCountOfEaten() == maxFood) {
             return true;
         }
@@ -37,8 +40,18 @@ public abstract class Animal extends Entity {
     }
 
     @Override
+    public Entity multiply() {
+        int multiplyProbability = this.getType().getMultiplyProbability();
+        int random = new Random().nextInt(100);
+        if (this.getCurrentWeight() == this.getType().getMaxWeight()) {
+            return Entity.createEntity(this.getType());
+        }
+        return null;
+    }
+
+    @Override
     public void changeWeight() {
-        currentWeight -= currentWeight / 100;
+        currentWeight -= currentWeight / 25.0;
     }
 
 
